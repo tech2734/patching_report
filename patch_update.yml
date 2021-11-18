@@ -1,0 +1,7 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Import the patch update role
+      import_role:
+        name: patch_update

@@ -1,2 +1,29 @@
 ---
 # tasks file for patch_update
+---
+- name: Update the systems
+  block:
+    - name: Run yum update
+      yum:
+        name: tmux
+        state: present
+
+    - name: If successful, add to succeeded list
+      set_stats:
+        data:
+          report_success: "{{ report_success + [{
+                     'SUCCESS': inventory_hostname }] }}"
+
+  rescue:
+
+    - name: Set fact for failed host
+      set_stats:
+        data:
+          report_failed: "{{ report_failed + [{
+                  'FAILED': inventory_hostname,
+                  'failure': ansible_failed_result.msg }] }}"
+
+  always:
+    - name: debug always
+      debug:
+        msg: "Hi! I am always going to display"

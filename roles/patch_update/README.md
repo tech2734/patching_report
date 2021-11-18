@@ -1,12 +1,13 @@
-Role Name
+Patch Update
 =========
 
-A brief description of the role goes here.
+This is a simple proof of concept role to update a server using yum.  The role uses a block format to run a rescue task to add any failed server to an aggregated list using set_stats module.  The intent is to construct the roles in a Workflow template in Ansible Tower.  The second role, patch_report, will take the JSON data from the set_stats module and email it in YAML format.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ansible Tower
+Workflow design
 
 Role Variables
 --------------
