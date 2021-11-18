@@ -18,3 +18,4 @@
           {{ report_out | to_nice_yaml }}
     from: Root <root@tower1.local.jmb>
   delegate_to: localhost
+  run_once: true
