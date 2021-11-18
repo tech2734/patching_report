@@ -2,13 +2,10 @@
 # tasks file for patch_report
 - name: Create the report
   set_fact:
-    report_out: |
-              Systems that failed patching:
-              {{ report_failed | to_nice_yaml }}
+    report_out:
+      failed: "{{ report_failed }}"
+      succeeded: "{{ report_success }}"
 
-              Systems that successfully patched:
-              {{ report_success | to_nice_yaml }}
-              
 - name: Send email report
   mail:
     subject: Patching Report for {{ lookup('pipe', 'date') }}
