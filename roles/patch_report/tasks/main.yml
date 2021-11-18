@@ -9,13 +9,12 @@
 - name: Send email report
   mail:
     subject: Patching Report for {{ lookup('pipe', 'date') }}
-    host: 192.168.1.218
-    port: 25
-    to: Tech2734 <tech2734@gmail.com>
+    host: "{{ report_mailhost }}"
+    port: "{{ report_mailport }}"
+    to: "{{ report_mailto }}"
     body: |
-          This is a test
-          Failure report:
+          Patching Results Report:
           {{ report_out | to_nice_yaml }}
-    from: Root <root@tower1.local.jmb>
+    from: "{{ report_mailfrom }}"
   delegate_to: localhost
   run_once: true
