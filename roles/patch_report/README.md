@@ -41,6 +41,29 @@ Example Playbook
           import_role:
             name: patch_report
 
+Example Email Report
+------------------
+
+```
+Patching Results Report:
+failed:
+-   FAILED: server1
+    failure: Failed to install some of the specified packages
+-   FAILED: server2
+    failure: 'Failed to download metadata for repo ''codeready-builder-for-rhel-8-x86_64-rpms'':
+        Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors
+        were tried'
+succeeded:
+-   SUCCESS: server3
+    Updated: false
+-   SUCCESS: server4
+    Updated: true
+
+The following had connection or other issues:
+server10
+server11
+```
+
 License
 -------
 
