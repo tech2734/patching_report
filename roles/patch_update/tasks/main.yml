@@ -1,6 +1,5 @@
 ---
 # tasks file for patch_update
----
 - name: Update the systems
   block:
     - name: Run yum update
