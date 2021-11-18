@@ -1,31 +1,45 @@
-Role Name
+Patch Update
 =========
 
-A brief description of the role goes here.
+This is a simple proof of concept role to report the status of a yum update.  The role uses the mail module to send an email constructed with data from the set_stats module from the patch_update role.  It is designed to be the second template in an Ansible Tower workflow template.  It will pass the JSON variables report_failed and report_success into the email body in YAML (to_nice_yaml) format.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ansible Tower
+Workflow design
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+**Default Variables**
+```
+report_failed: []  | **This should be overriden from the patch_update role**
+report_success: []  | **This should be overriden from the patch_update role**
+```
+
+**Required Variables**
+```
+report_mailhost: nameofmailhost.domain.com
+report_mailport: 25
+report_mailto: Recipient <username@domain.com>
+report_mailfrom: Sender <username@domain.com>
+```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Ansible Tower
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    - hosts: all
+      gather_facts: false
+      tasks:
+        - name: Import the patch report role
+          import_role:
+            name: patch_report
 
 License
 -------
@@ -35,4 +49,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+John Best <jbest@redhat.com>
