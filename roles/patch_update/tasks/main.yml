@@ -23,6 +23,7 @@
                   'failure': ansible_failed_result.msg }] }}"
 
   always:
-    - name: debug always
-      debug:
-        msg: "Hi! I am always going to display"
+    - name: Create list of connection failures
+      set_stats:
+        data:
+          connect_fail_list: "{{ ansible_play_hosts_all | difference(ansible_play_batch) | join('\n') }}"
