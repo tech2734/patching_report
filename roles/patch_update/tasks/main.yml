@@ -15,7 +15,7 @@
 
   rescue:
 
-    - name: Set fact for failed host
+    - name: If failed, add to failed list
       set_stats:
         data:
           report_failed: "{{ report_failed + [{
