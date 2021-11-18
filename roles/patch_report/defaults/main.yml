@@ -1,2 +1,4 @@
 ---
 # defaults file for patch_report
+report_failed: []
+report_success: []
