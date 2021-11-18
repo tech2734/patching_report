@@ -15,6 +15,8 @@
     body: |
           Patching Results Report:
           {{ report_out | to_nice_yaml }}
+          The following had connection or other issues:
+          {{ ansible_play_hosts_all | difference(ansible_play_batch) | join('\n') }}
     from: "{{ report_mailfrom }}"
   delegate_to: localhost
   run_once: true
