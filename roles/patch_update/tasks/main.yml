@@ -6,12 +6,14 @@
       yum:
         name: tmux
         state: present
+      register: update_results
 
     - name: If successful, add to succeeded list
       set_stats:
         data:
           report_success: "{{ report_success + [{
-                     'SUCCESS': inventory_hostname }] }}"
+                     'SUCCESS': inventory_hostname,
+                     'Updated': update_results.changed }] }}"
 
   rescue:
 
@@ -27,3 +29,5 @@
       set_stats:
         data:
           connect_fail_list: "{{ ansible_play_hosts_all | difference(ansible_play_batch) | join('\n') }}"
+      delegate_to: localhost
+      run_once: true
