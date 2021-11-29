@@ -18,5 +18,6 @@
           The following had connection or other issues:
           {{ connect_fail_list }}
     from: "{{ report_mailfrom }}"
+    subtype: html
   delegate_to: localhost
   run_once: true
