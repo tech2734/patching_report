@@ -14,7 +14,7 @@
     to: "{{ report_mailto }}"
     body: |
           Patching Results Report:
-          {{ report_out | to_nice_yaml }}
+          <pre>{{ report_out | to_nice_yaml }}</pre>
           The following had connection or other issues:
           {{ connect_fail_list }}
     from: "{{ report_mailfrom }}"
